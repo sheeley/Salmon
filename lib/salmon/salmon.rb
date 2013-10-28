@@ -2,9 +2,6 @@ require 'github_api'
 require 'optparse'
 require 'ostruct'
 
-require 'pry'
-
-
 module Salmon
     class Application
 
@@ -42,7 +39,6 @@ module Salmon
             puts "Getting list of repos for #{@options.source.type}: #{@options.source.name}" if @options.verbose
             begin
                 key = @options.source.type == :user ? :user : :org
-                binding.pry
                 repos = github.repos.list("#{key}" => @options.source.name)
             rescue StandardError => e
                 abort("Error getting list: #{e}")
